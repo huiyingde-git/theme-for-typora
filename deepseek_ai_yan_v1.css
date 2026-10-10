@@ -1,0 +1,808 @@
+/*
+*  This typora theme was designed for yan
+* 主题：deepseek_dark
+* 包含：深色模式，浅色模式（未出）
+*/
+
+@import "deepseek_theme_ai_yan/deepseek_ai_night_yan_codeblock.css";
+
+:root {
+    /* === 画面提取主色（DeepSeek人鱼角色）=== */
+    --ds-dark-blue: #2949b8;    /* 头发最深宝蓝 */
+    --ds-mid-blue: #4b74e8;     /* 主体中蓝色 */
+    --ds-light-blue: #83b1ff;   /* 浅蓝渐变发色 */
+    --ds-pale-blue: #d0e0ff;    /* 浅淡蓝白，裙装底色 */
+    --ds-white: #f8fbff;        /* 画面纯白底色 */
+    --ds-whale-blue: #1c6cdb;   /* 左上角鲸鱼Logo蓝 */
+
+    --side-bar-bg-color: #253366b6;           /*侧边栏整体背景颜色：深蓝黑色*/
+    --control-text-color: #a0b4e0;          /*次要控件文字（未激活、提示文字）：微透明灰*/
+    --select-text-bg-color: #273b70;        /*鼠标选中文本时的背景色：深蓝黑色，微透明*/    /*未使用*/
+    --active-file-text-color: #83b1ff;      /*侧边栏当前激活文件的文字颜色：白色，微蓝*/    /*未使用*/
+    --active-file-border-color: #4b74e8;    /*侧边栏激活文件左侧标记边框：白色，微蓝*/      /*未使用*/
+    --font-color-1:#e6edff;                 /*正文主体文字颜色：白*/
+    --deleteline-color:#a0b1dc;             /*被删除文字颜色：微透明灰*/
+    --code-bg-color:rgba(30,45,90,0.35);    /*行内代码的半透明背景：黑色*/              /*未使用*/
+    --code-font-color:#83b1ff;              /*行内代码字体颜色：白色，微灰*/
+    --hr-color:rgba(91, 131, 241, 0.705);        /*分割线hr中间主渐变颜色*/
+    --img-outline-color:#2f3b60;            /*图片框架模式的描边颜色*/                  /*未使用*/
+
+     /*主题色阶：整套蓝黑灰系*/
+    --main-color-1: #101422;
+    --main-color-2: #171d36;
+    --main-color-3: #1f2847;
+    --main-color-4: #273460;
+    --main-color-5: #2f4280;
+    --main-color-6: #3852a8;
+    --main-color-7: #4b74e8;
+    --main-color-8: #649aff;
+    --main-color-9: #83b1ff;
+    --main-color-10: #a8c7ff;
+    --main-color-11: #d0e0ff;
+
+    --highlight-color-1: #f19e3f;
+    --highlight-color-2: #efab5d;
+    --highlight-color-3: #6ee1f3;
+    --highlight-color-4: #53f2e7;
+}
+
+/* ====================== @font-face：引入本地字体文件 ====================== */
+/* ========== 霞鹜文楷 LXGWWenKai（正文人文字体） ========== */
+/* Light 细体 */
+@font-face {
+    font-family: 'LXGW WenKai 10';
+    font-style: normal;
+    font-weight: 300;
+    src: url("./deepseek_theme_ai_yan/LXGWWenKai-Light.ttf") format('truetype');
+}
+/* Regular 常规 */
+@font-face {
+    font-family: 'LXGW WenKai 10';
+    font-style: normal;
+    font-weight: 400;
+    src: url("./deepseek_theme_ai_yan/LXGWWenKai-Regular.ttf") format('truetype');
+}
+/* Medium 中等粗体 */
+@font-face {
+    font-family: 'LXGW WenKai 10';
+    font-style: normal;
+    font-weight: 500;
+    src: url("./deepseek_theme_ai_yan/LXGWWenKai-Medium.ttf") format('truetype');
+}
+
+/* ========== 霞鹜文楷等宽 LXGWWenKaiMono（代码专用等宽字体） ========== */
+@font-face {
+    font-family: 'LXGW WenKai Mono 10';
+    font-style: normal;
+    font-weight: 300;
+    src: url("./deepseek_theme_ai_yan/LXGWWenKaiMono-Light.ttf") format('truetype');
+}
+@font-face {
+    font-family: 'LXGW WenKai Mono 10';
+    font-style: normal;
+    font-weight: 400;
+    src: url("./deepseek_theme_ai_yan/LXGWWenKaiMono-Regular.ttf") format('truetype');
+}
+@font-face {
+    font-family: 'LXGW WenKai Mono 10';
+    font-style: normal;
+    font-weight: 500;
+    src: url("./deepseek_theme_ai_yan/LXGWWenKaiMono-Medium.ttf") format('truetype');
+}
+
+:root {
+    --font-family: "LXGW WenKai 10", sans-serif;
+    --font-mono: "LXGW WenKai Mono 10", monospace;
+}
+body {
+    font-family: var(--font-family);
+    /* 允许浏览器自动合成斜体、粗斜体；没有原生斜体文件也能生成 */
+    font-synthesis: style weight;
+}
+
+/* ====================== 全局基础：html、body、编辑区域#write ====================== */
+html,
+body,
+#write {
+      font-family: 'LXGW WenKai 10', Arial,"pingfangSC light", "microsoft yahei"; /*字体回退顺序：优先加载自定义HelveticaN，找不到则依次回退系统字体*/
+}
+
+html {
+    font-size: 18px; /*根字号，rem单位以此为基准*/
+}
+
+body {
+    color: var(--font-color-1);                     /*正文文字：白*/
+    -webkit-font-smoothing: antialiased;            /*mac下字体抗锯齿渲染*/
+    line-height: 1.6rem;                            /*全局行高*/
+    letter-spacing: 0;                              /*字间距，不拉开字距*/
+    margin: 0;
+    overflow-x: hidden;                             /*隐藏横向滚动条*/
+    background-color: var(--main-color-1);          /*页面背景：黑*/
+}
+/* 清除全局第一个/最后一个元素上下外边距 */
+body > *:first-child {
+    margin-top: 0 !important;
+}
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* --------笔记编辑页面设置---------- */
+#write {
+    position: static;
+    max-width: 1100px;                    /*编辑区域最大宽度，控制阅读行宽，避免文字过宽*/
+    margin: 0 auto;                       /*水平居中*/
+    padding: 20px 30px 100px;             /*内边距，上下左右留白*/
+    transform: none;
+
+    /* 为页面设置水印背景图片 */
+
+    /* 使用图片1 */
+    /*
+    background-image: url("./deepseek_theme_ai_yan/deepseek_ai_image_v1_30.png");
+    background-repeat: no-repeat;
+    background-size: 15%;                  
+    background-position: 85% 99%;          
+    background-attachment: fixed;
+    */
+
+    /* 使用图片2 */
+    /*
+    background-image: url("./deepseek_theme_ai_yan/deepseek_ai_image_v2_30.png");
+    background-repeat: no-repeat;
+    background-size: 30%;                  
+    background-position: 83% bottom;          
+    background-attachment: fixed;
+    */
+
+    /* 使用图片3 */
+    /*
+    background-image: url("./deepseek_theme_ai_yan/deepseek_ai_image_v3_30.png");
+    background-repeat: no-repeat;
+    background-size: 45%;                  
+    background-position: 65% bottom;          
+    background-attachment: fixed;         
+    */
+
+    /* 使用图片4 */
+    
+    background-image: url("./deepseek_theme_ai_yan/deepseek_ai_image_v4_30.png");
+    background-repeat: no-repeat;
+    background-size: 45%;                  
+    background-position: 85% 98%;          
+    background-attachment: fixed;         
+    
+
+    /* 使用图片5 */
+    /*
+    background-image: url("./deepseek_theme_ai_yan/deepseek_ai_image_v5_30.png"); 
+    background-repeat: no-repeat;
+    background-size: 45%;                 
+    background-position: 88% 98%;          
+    background-attachment: fixed;           
+    */
+}
+
+/* 段落、引用、列表、表格统一上下外边距 */
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8em 0;
+}
+
+/* li内部嵌套列表消除额外外边距 */
+li > ol,
+li > ul {
+    margin: 0 0;
+}
+
+/* ----------------段落样式---------------- */
+/* 标题内部行内代码tt/code，字号跟随标题，不要缩小 */
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, 
+h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code{
+    font-size: inherit !important;
+}
+
+h1 {
+    text-align: center;                 /*一级标题居中*/
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin: 2.8rem auto 2.2rem;         /*上下外边距*/
+    color: var(--font-color-1);         /*白色*/
+}
+
+h2 {
+    text-align: left;                               /* 左对齐 */
+    font-size: 1.6rem;                              /* 字号 1.4rem，基于根字体大小，适配缩放 */
+    margin: 2rem auto 1.6rem;                       /* 外边距：上 1.8rem，左右auto，下1.4rem */
+    border-bottom: 1px solid var(--main-color-10);  /* 底部细实线横线 */
+    padding: 0.2rem 0.3rem;                         /* 内边距：上下0.2rem，左右0.3rem，让文字远离边框 */
+    color: var(--main-color-10);
+}
+
+h3 {
+    text-align: left;
+    font-size: 1.4rem;
+    margin: 1.8rem auto 1.4rem;
+    border-bottom: 1px solid var(--main-color-9);
+    padding: 0.1rem 0.3rem;
+    color: var(--main-color-9);
+}
+
+h4 {
+    text-align: left;
+    font-size: 1.2rem;
+    margin: 1.6rem auto 1.2rem;
+    border-bottom: 1px solid var(--main-color-8);
+    padding: .1rem .3rem;
+    color: var(--main-color-8);
+}
+
+h5 {
+    text-align: left;
+    font-size: 1.1rem;
+    margin: 1.4rem auto 1.1rem;
+    border-bottom: 1px solid var(--main-color-7); 
+    padding: .1rem .3rem;
+    color: var(--main-color-7);
+}
+
+h6 {
+    text-align: left;
+    font-size: 1.1rem;
+    margin: 1.2rem auto 1.1rem;
+    border-bottom: 1px solid var(--main-color-6);
+    padding: .1rem .3rem;
+    color: var(--main-color-6);
+}
+
+/* 引用 */
+blockquote {
+    border: 1px dashed var(--ds-light-blue);     /* 边框：1px 虚线，浅蓝色 */
+    border-radius: 6px;                         /* 圆角：6px，边角柔和 */
+    margin: 1rem auto;                          /* 外边距：上下2rem，左右auto */
+    padding: 1rem 1.8rem;                       /* 内边距：上下1.5rem，左右1rem；文字和边框拉开距离 */
+    color: var(--highlight-color-1) !important; /* 引用块文字颜色，使用主题变量 */
+    box-shadow: 2px 2px 6px 1px #B2B2B2;        /* 阴影：水平偏移4px，垂直偏移4px，模糊半径8px，扩散2px，灰色#B2B2B2 */
+    font-family: 'LXGW WenKai Mono 10', Arial, "kaiti", "microsoft yahei" !important;
+    /* 字体栈：优先 LXGW WenKai Mono 10，其次Arial，再楷体、微软雅黑 */
+}
+
+/* 列表第一个元素上边距修正 */
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 30px;
+}
+
+/* 列表 */
+#write ol,#write ul {
+    padding-left: 25px;
+    margin: .5rem 0;
+  }
+/* 序号 浅蓝色 */
+#write ol>li, #write ul>li {
+    color: var(--ds-pale-blue);
+}
+/* 文字 苍白色 */
+#write ol>li>*, #write ul>li>* {
+    color: var(--control-text-color)
+}
+/* 一级无序列表，实心圆点 */
+#write ul {
+      list-style-type: disc;
+}
+/* 二级无序列表，空心圆点 */
+#write ul ul, #write ol ul{
+    list-style-type: circle;  
+}
+/* 三级无序列表，实心方块 */
+#write ul ul ul, #write ol ul ul, #write ol ol ul, #write ul ol ul{
+    list-style-type: square;  
+}
+
+/* 数学公式块（LaTeX 公式） */  
+.mathjax-block > .code-tooltip {
+    bottom: 0.375rem;
+}
+
+/* 任务列表 */
+/* .task-list {
+    padding-left: 0;
+}
+
+.md-task-list-item {
+    padding-left: 1.25rem;
+}
+
+.md-task-list-item > input {
+    top: auto !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+
+.md-task-list-item > input:before {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--code-font-color);
+    border-radius: 2px;
+    border: 1px solid var(--main-color-5);
+    margin-top: -0.35rem;
+    transition: all 0.2s linear;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before {
+    content: '\2714';
+    font-size: 0.625rem;
+    color: var(--main-color-1);
+    border: 1px solid var(--main-color-6);
+    background-color: var(--main-color-6);
+} 
+
+#write .md-task-list-item.task-list-done > p {
+    color: var(--blockquote-font-color);
+    text-decoration: line-through;
+} */
+
+/* 行内代码 */
+#write code, tt{
+    color: var(--highlight-color-2);
+    background-color: var(--main-color-5) !important;
+    font-family: 'LXGW WenKai Mono 10','Times New Roman',Arial, simsun, sans-serif;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+
+/* 流程图块 */
+#write .md-diagram-panel {
+  position: relative;
+  margin: 24px auto;
+}
+#write .md-focus .md-diagram-panel {
+  border: 1px solid var(--highlight-color-3);
+  border-radius: 4px;
+}
+
+/* 链接 */
+#write a {
+    color: var(--main-color-9);
+    font-family: 'LXGW WenKai Mono 10', arial, simsun, 'microsoft yahei';
+    text-decoration: none;
+    padding:0 0.5rem;
+}
+#write a:hover {
+    color: var(--highlight-color-3);
+    font-family:  'LXGW WenKai Mono 10', arial, simsun, 'microsoft yahei';
+    text-decoration: underline;
+}
+
+/* 斜体 */
+#write em {
+    padding: 0 3px;
+}
+
+/* 删除线 */
+#write del {
+    padding: 1px 2px;
+    text-decoration: line-through #f0504a;
+    color:var(--deleteline-color)
+}
+
+/* 加粗 */
+#write strong {
+    padding: 0 2px;
+    color: var(--main-color-10);
+    font-weight: 1000;
+}
+
+/* 高亮 */
+#write mark {
+    background-color: var(--highlight-color-4);
+    padding: 2px 4px;
+    margin: 0 2px;
+}
+
+/* 分割线 */
+#write hr{
+    height:1px;                                  /* 分割线实体高度 1px */
+    padding:0;                                   /* 清除内边距 */
+    border:none;                                 /* 取消hr默认自带边框 */
+    background-image:linear-gradient(to right,rgba(255,255,255,0),var(--hr-color),var(--highlight-color-3),var(--hr-color),rgba(255,255,255,0));
+    /* 渐变背景：从左到右 → 透明白色 - 主题变量颜色 - 高亮颜色 - 主题变量颜色 - 透明白色，*/
+    margin: 2rem 0;                           /* 上下外边距2rem；auto在这里对块级hr无效，建议改为 margin: 2rem 0; */
+}
+
+/* 脚注上标 */
+/* #write .md-footnote {
+    color: var(--main-color-7);
+    font-family: arial;
+}
+ #write .md-footnote > .md-text:before {
+    content: '['
+}
+ #write .md-footnote > .md-text:after {
+    content: ']'
+} */
+ 
+ /* 脚注 */
+ /* #write .md-def-name {
+    font-size: 1rem;
+    margin-left: -1rem;
+    margin-right: -1.2rem;
+    color: var(--main-color-7);
+}
+ #write .md-def-name:before {
+    content: '';
+    color: var(--font-color-1);
+}
+ #write .md-def-name:after {
+    color: var(--font-color-1);
+    content: '';
+} */
+
+/* 编辑区域光标（插入符）样式 */
+#write {
+  caret-color: var(--highlight-color-2);
+}
+
+/* 代码块 */
+/* 代码块外框 */
+#write .md-fences {
+  border: 1px solid var(--main-color-10);   /* 外框线颜色 */
+  -webkit-font-smoothing: initial;
+  padding: 0.4rem 0.6rem;
+  font-family: 'LXGW WenKai Mono 10', 'simsun', 'microsoft yahei' !important;
+  line-height: 1.55rem;                 /* 行高 */
+  border-radius: 5px;                   /* 圆角 */
+  font-size: 0.9rem;                    /* 字体大小 */
+  word-wrap: normal;                    /* 长代码不自动换行，超出代码块会横向滚动 */
+  font-style: normal;                   /* 强制非斜体，防止继承斜体样式 */
+  background-color: var(--main-color-2);  /* 代码块背景色 */
+  color: var(--font-color-1);           /* 代码块内文字颜色，沿用你主题的代码字体颜色变量 */
+}
+/* 仅代码悬浮提示框内的输入框，focus样式，不影响全局input */
+.code-tooltip .ty-input:focus, input:focus {
+    outline: 0;                /* 取消浏览器默认蓝色聚焦外框 */
+    box-shadow: none;          /* 去掉默认聚焦阴影 */
+    border-color: var(--main-color-8); /* 输入框激活时，边框变成主题变量颜色 */
+    font-size: 14px;           /* 聚焦时字号固定14px */
+    color:var(--highlight-color-1)             /* 文字颜色 */
+}
+/* 代码块光标样式 */
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+    border-left: 2px solid var(--highlight-color-3);
+}
+.CodeMirror div.CodeMirror-cursor {
+    border-left: 2px solid var(--highlight-color-3);
+    z-index: 3;
+}
+
+/* 目录 */
+#write a.md-toc-inner {
+    font-size: 1.1rem;
+    color:var(--main-color-9);
+    line-height: 1.8;
+    white-space: pre-line;
+    font-family:'LXGW WenKai 10', "microsoft yahei", Arial;
+    border-bottom: none;
+    font-weight: normal;
+}
+#write a:hover.md-toc-inner {
+    color: var(--main-color-9);
+    text-decoration: underline;
+}
+
+/* 图片 */
+#write img {
+    max-width: 90% ;
+    border-radius: 8px;         /* 圆角 */
+    margin:1.2rem auto;
+}
+
+/*
+.md-image img[alt|='shadow'] {
+    border-radius: 6px;
+    box-shadow: 2px 3px 6px 2px #989898;
+    border: none !important;
+}
+.md-image img[alt|='frame'] {
+    border-radius: none !important;
+    border: 5px solid #ffffff;
+    outline: 5px solid var(--ds-mid-blue);
+}
+*/
+
+/* 表格 */
+table {
+    padding: 0;
+    word-break: initial;
+}
+#write table tr th {
+    border: 2px solid var(--main-color-7);
+    background-color: var(--main-color-4); 
+    color: var(--highlight-color-4);
+    border-bottom: 0;
+    padding: 5px 8px;
+}
+#write table tr td {
+    border: 2px solid var(--main-color-7);
+    padding: 5px 8px;
+}
+ 
+/* 侧边栏 */
+/* 侧边栏顶部标签：【文件】【大纲】文字放大 */
+.info-panel-tab-wrapper .info-panel-tab {
+    font-size: 1.2rem !important;
+}
+/* 侧边栏扁平文件列表，选中激活项 */
+.file-list-item.active {
+    color: var(--highlight-color-3);
+    background-color: var(--side-bar-bg-color);
+    border-left: 4px solid var(--highlight-color-3);
+}
+/* 文件树节点选中时背景层 */
+.file-tree-node.active > .file-node-background {
+    background-color: var(--side-bar-bg-color);
+    font-weight: normal;
+    border-left: 4px solid var(--highlight-color-3);
+}
+/* 文件树选中节点文字容器 */
+.file-tree-node.active > .file-node-content {
+    color: var(--main-color-10);
+    font-weight: normal;
+}
+/* 侧边栏文件条目 hover悬浮效果 */
+.file-tree-node > .file-node-content:hover {
+    color: var(--highlight-color-2);
+}
+.file-list-item:hover {
+    color: var(--highlight-color-2);
+}
+/* 右侧面板标签下划线 */
+.info-panel-tab-border {
+    color: var(--highlight-color-3);
+}
+/* 大纲视图 */
+.pin-outline .outline-active {
+    color: var(--highlight-color-3);
+}
+
+/* ========== 侧边栏「文件 / 大纲」分段按钮 ==========
+   ⚠️ 校正说明：下面这段命中的是左侧边栏顶部的【文件】【大纲】切换按钮，
+      并不是顶部文档标签栏。#typora-sidebar-tab-header 这个 id 在 DOM 里不存在。
+      顶部文档标签栏由 window_tab 插件绘制，真正选择器见本文件下方
+      "顶部文档标签栏（window_tab 插件）" 一节。 */
+/* 侧边栏分段按钮容器 */
+#typora-sidebar-tab-header {
+    background-color: var(--main-color-2); /* 【整个顶部栏背景色】自行替换变量 */
+}
+
+/* 未激活的文档标签（非当前打开） */
+.sidebar-tab {
+    background-color: var(--highlight-color-1); /* 未激活标签背景 */
+    color: var(--control-text-color);      /* 未激活标签文字颜色 */
+}
+
+/* 激活的当前文档标签（正在查看的md） */
+.sidebar-tab.active {
+    background-color: var(--main-color-4); /* 激活标签背景色 */
+    color: var(--active-file-text-color);  /* 激活标签文字颜色 */
+}
+
+/* 标签右上角关闭叉号 × */
+.sidebar-tab .close-tab-btn {
+    color: var(--control-text-color);
+}
+.sidebar-tab.active .close-tab-btn {
+    color: var(--active-file-text-color);
+}
+/* 鼠标悬浮未激活标签 */
+.sidebar-tab:hover:not(.active) {
+    background-color: var(--main-color-6);
+    color: var(--highlight-color-2);
+}
+/*------------------------------*/
+
+/* ==========================================================================
+   顶部文档标签栏（window_tab 插件）—— 真正生效的选择器
+   --------------------------------------------------------------------------
+   标签栏不是 Typora 自带 UI，而是 typora_plugin 的 window_tab 插件动态插入的：
+       根容器 #plugin-window-tab
+         └─ .tab-bar                    整条标签栏
+              └─ .tab-container         单个标签（未激活）
+                   ├─ .active-indicator 激活标签顶部的指示条
+                   ├─ .window-tab-name  文件名文字
+                   └─ .close-button > .close-icon  关闭叉号
+       .tab-container.active = 当前激活的标签
+   插件默认用 var(--bg-color, white) 取色，而本主题没定义 --bg-color，
+   于是回退成白色（深色主题里就成了白条 + 白底浅字看不清）。
+   下面加了 body 前缀提高优先级，稳定压过插件默认样式。
+   想改配色，只动下面这组变量即可。
+   ========================================================================== */
+:root {
+    --tabbar-bg:        var(--main-color-1);       /* 整条标签栏背景 */
+    --tab-bg:           var(--main-color-2);       /* 未激活标签背景 */
+    --tab-text:         var(--control-text-color); /* 未激活标签文字 */
+    --tab-bg-active:    var(--main-color-4);       /* 激活标签背景 */
+    --tab-text-active:  var(--font-color-1);       /* 激活标签文字 */
+    --tab-bg-hover:     var(--main-color-3);       /* 鼠标悬浮标签背景 */
+    --tab-text-hover:   var(--main-color-11);      /* 鼠标悬浮标签文字 */
+    --tab-indicator:    var(--main-color-7);       /* 激活标签顶部指示条 */
+    --tab-line:         var(--main-color-5);       /* 标签栏底部边线 / 关闭键悬浮底色 */
+}
+
+/* 整条标签栏的背景与底部边线 */
+body #plugin-window-tab .tab-bar {
+    background-color: var(--tabbar-bg);
+}
+body #plugin-window-tab .tab-bar::after {
+    border-bottom-color: var(--tab-line);
+}
+body #plugin-window-tab .tab-bar::-webkit-scrollbar-thumb {
+    background-color: var(--tab-line);
+}
+
+/* 未激活标签：背景 + 文字 */
+body #plugin-window-tab .tab-container {
+    background-color: var(--tab-bg);
+    color: var(--tab-text);
+    border-color: transparent;
+    border-bottom-color: var(--tab-line);
+}
+body #plugin-window-tab .tab-container .window-tab-name {
+    color: var(--tab-text);
+}
+
+/* 激活标签：背景 + 文字 + 顶部指示条 */
+body #plugin-window-tab .tab-container.active {
+    background-color: var(--tab-bg-active);
+    color: var(--tab-text-active);
+    border-color: transparent;
+    border-bottom-color: var(--tab-bg-active);
+}
+body #plugin-window-tab .tab-container.active .window-tab-name {
+    color: var(--tab-text-active);
+}
+body #plugin-window-tab .tab-container.active .active-indicator {
+    background-color: var(--tab-indicator);
+}
+
+/* 鼠标悬浮：未激活标签 */
+body #plugin-window-tab .tab-container:hover:not(.active) {
+    background-color: var(--tab-bg-hover);
+}
+body #plugin-window-tab .tab-container:hover:not(.active) .window-tab-name {
+    color: var(--tab-text-hover);
+}
+
+/* 鼠标悬浮：激活标签 */
+body #plugin-window-tab .tab-container.active:hover {
+    background-color: var(--tab-bg-hover);
+}
+body #plugin-window-tab .tab-container.active:hover .window-tab-name {
+    color: var(--tab-text-hover);
+}
+
+/* 关闭叉号 × 的颜色（未激活 / 激活 / 悬浮） */
+body #plugin-window-tab .close-icon::before,
+body #plugin-window-tab .close-icon::after {
+    background-color: var(--tab-text);
+}
+body #plugin-window-tab .tab-container.active .close-icon::before,
+body #plugin-window-tab .tab-container.active .close-icon::after {
+    background-color: var(--tab-text-active);
+}
+body #plugin-window-tab .tab-container:hover .close-icon::before,
+body #plugin-window-tab .tab-container:hover .close-icon::after {
+    background-color: var(--tab-text-hover);
+}
+body #plugin-window-tab .close-button:hover {
+    background-color: var(--tab-line);
+}
+
+/* 拖动标签叠到另一个标签上时的提示底色 */
+body #plugin-window-tab .tab-container.over {
+    background-color: var(--tab-bg-hover);
+}
+.md-header-span .md-attr {
+    color: var(--highlight-color-1);
+    display: inline;
+}
+.megamenu-content,
+.megamenu-opened header {
+    background: var(--highlight-color-1);
+}
+
+/* ========== Typora 右键菜单（上下文菜单 context-menu） ========== */
+/* 右键菜单外框容器 */
+.context-menu {
+    background-color: var(--side-bar-bg-color) !important; /*菜单背景色*/
+}
+/* 普通右键菜单项文字颜色 */
+.context-menu .menu-item {
+    color: var(--main-color-8) !important;
+}
+
+/* ==========================================================================
+   菜单文字 / 菜单按钮 —— 精准修正（不修改任何全局变量）
+   --------------------------------------------------------------------------
+   ① 菜单里的"深灰黑字"
+      根因：本主题没有定义 --text-color，Typora 的 style/base-control.css 里
+            .dropdown-menu > li > a { color: var(--text-color); }
+            于是回退到 style/base.css 的浅色模式默认值 #333333，
+            在深蓝菜单底上几乎读不出来（截图里的"新建文件/搜索/刷新"等）。
+      做法：显式指定白色，不动全局变量，避免影响弹窗、下拉菜单等其它 UI。
+   --------------------------------------------------------------------------
+   ② 菜单里"白底 + 浅色图标"的方块按钮
+      根因：本主题没有定义 --bg-color，Typora 的 style/window.css 里
+            .menu-item-container a.menu-style-btn { background: var(--bg-color); }
+            于是回退成 #ffffff，而按钮里的图标继承正文色 --font-color-1(#e6edff)，
+            白底白图标 => 完全看不见。
+      做法：把按钮底色换成主题深蓝，浅色图标自然显出来。
+   ========================================================================== */
+
+/* ① 菜单项文字：改白色 */
+.dropdown-menu > li > a,
+.dropdown-menu > li > a > span,
+#sidebar-files-menu li > a,
+#sidebar-files-menu li > a > span {
+    color: #ffffff;
+}
+/* 悬浮 / 聚焦时保持白字（bootstrap 默认 hover 会变成 #262626） */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    color: #ffffff;
+}
+
+/* ② 菜单方块按钮：不再白底，让浅色图标显出来 */
+.menu-item-container a.menu-style-btn {
+    background: var(--main-color-4);                 /* 深蓝底，比菜单底略亮，勾出按钮形状 */
+    box-shadow: inset 0 0 0 1px var(--main-color-6); /* 细描边 */
+}
+/* 悬浮 / 当前状态 */
+.menu-item-container a.menu-style-btn:hover,
+.menu-item-container a.menu-style-btn.active {
+    background-color: var(--main-color-5);
+}
+/* 禁用态（未选中文字时的 剪切/复制）：Typora 硬编码了浅灰 #fafafa，
+   深色主题里会变成一块亮色，与启用态主次颠倒。这里统一压成暗色。 */
+.menu-item-container a.menu-style-btn.disabled,
+.menu-item-container a.menu-style-btn.disabled:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+    color: #7f8aa8;
+}
+
+/* emoji */
+.md-emoji {
+    padding: 0 3px;
+}
+
+/* ========== 打印/导出PDF专用媒体查询 @media print ========== */
+@media print {
+    .typora-export * {
+      -webkit-print-color-adjust: exact;
+  }
+    html {
+        font-size: 13px;
+    }
+
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+}
